@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>E-Commerce Demo</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        .product {
+            margin-bottom: 20px;
+        }
+        .cart {
+            margin-top: 30px;
+            border-top: 1px solid #ccc;
+            padding-top: 10px;
+        }
+    </style>
+</head>
+<body>
+    <h1>E-Commerce Website</h1>
+    <div id="products">
+        <div class="product">
+            <h2>Product 1</h2>
+            <p>Price: $10</p>
+            <button onclick="addToCart('Product 1', 10)">Add to Cart</button>
+        </div>
+        <div class="product">
+            <h2>Product 2</h2>
+            <p>Price: $20</p>
+            <button onclick="addToCart('Product 2', 20)">Add to Cart</button>
+        </div>
+        <div class="product">
+            <h2>Product 3</h2>
+            <p>Price: $30</p>
+            <button onclick="addToCart('Product 3', 30)">Add to Cart</button>
+        </div>
+    </div>
+
+    <div class="cart">
+        <h2>Shopping Cart</h2>
+        <ul id="cart"></ul>
+        <p id="total">Total: $0</p>
+    </div>
+
+    <script>
+        // filepath: script.js
+        const cart = [];
+        let total = 0;
+
+        function addToCart(productName, productPrice) {
+            cart.push({ name: productName, price: productPrice });
+            total += productPrice;
+            updateCart();
+        }
+
+        function updateCart() {
+            const cartElement = document.getElementById('cart');
+            const totalElement = document.getElementById('total');
+
+            cartElement.innerHTML = '';
+            cart.forEach(item => {
+                const li = document.createElement('li');
+                li.textContent = `${item.name} - $${item.price}`;
+                cartElement.appendChild(li);
+            });
+
+            totalElement.textContent = `Total: $${total}`;
+        }
+    </script>
+</body>
+</html>
